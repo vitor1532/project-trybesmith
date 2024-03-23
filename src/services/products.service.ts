@@ -2,7 +2,7 @@ import ProductModel from '../database/models/product.model';
 import { Product } from '../types/Product';
 import { ServiceResponse } from '../types/ServiceResponse';
 
-const insert = async ({ id, name, price, userId }: Product): Promise<ServiceResponse> => {
+const update = async ({ id, name, price, userId }: Product): Promise<ServiceResponse> => {
   const productFound = await ProductModel.findByPk(id);
   if (!productFound) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
 
@@ -14,5 +14,5 @@ const insert = async ({ id, name, price, userId }: Product): Promise<ServiceResp
 };
 
 export default {
-  insert,
+  update,
 };
