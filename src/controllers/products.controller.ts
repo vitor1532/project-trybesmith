@@ -2,6 +2,12 @@ import { Request, Response } from 'express';
 import ProductsService from '../services/products.service';
 import mapStatusHTTP from '../utils/mapStatusHTTP';
 
+const getAll = async (_req: Request, res: Response): Promise<Response> => {
+  const { status, data } = await ProductsService.getAll();
+
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 // TODO: VERIFY REQ.BODY 
 
 const create = async (req: Request, res: Response): Promise<Response> => {
@@ -19,6 +25,7 @@ const update = async (req: Request, res: Response): Promise<Response> => {
 };
 
 export default {
+  getAll,
   update,
   create,
 };
