@@ -17,6 +17,10 @@ export const invalidPassword = {
 }
 
 export const invalidUsername = {
-  username: 'Thor',
+  username: 'Loki',
   password: '123',
 }
+
+export const failedLoginResponse = {
+  message: 'Username or password invalid',
+};
