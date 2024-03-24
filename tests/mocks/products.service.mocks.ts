@@ -21,4 +21,16 @@ export const updatedProduct = {
   name: 'Martelo do thor',
   price: '99999 peças de prata',
   userId: 2
-}
+};
+
+export const invalidUserIdProduct = {
+  name: 'bandeija de bronze',
+  price: '80 peças de prata',
+  userId: 9999,
+};
+
+export const newProduct = {
+  name: 'bandeija de bronze',
+  price: '80 peças de prata',
+  userId: 1,
+};

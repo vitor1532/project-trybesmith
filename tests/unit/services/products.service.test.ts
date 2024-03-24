@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, use } from 'chai';
 import sinon from 'sinon';
 import ProductModel from '../../../src/database/models/product.model';
 import ProductService from '../../../src/services/products.service';
@@ -7,13 +7,45 @@ import {
   updatedProduct,
   validProduct,
   validProductFromModel,
+  invalidUserIdProduct,
+  newProduct,
 } from '../../mocks/products.service.mocks';
+import UserModel from '../../../src/database/models/user.model';
+import { validUserFromModel } from '../../mocks/user.service.mocks';
 
 
 describe('ProductsService', function () {
   beforeEach(function () { sinon.restore(); });
   const NOT_FOUND = 'NOT_FOUND';
   const SUCCESS = 'SUCCESS';
+  const CREATED = 'CREATED';
+
+  it('Test the create function in case of a invalid userId', async function() {
+    //arrange
+
+    sinon.stub(UserModel, 'findByPk').resolves(null);
+
+    //act
+    const serviceResponse = await ProductService.create(invalidUserIdProduct);
+
+    //assert
+    expect(serviceResponse.status).to.be.eq(NOT_FOUND);
+    expect(serviceResponse.data).to.deep.equal({message: 'User not found'});
+  });
+
+  it('Test the create function in case of success', async function() {
+    //arrange
+    const userMock = UserModel.build(validUserFromModel);
+    const productMock = ProductModel.build(newProduct);
+    sinon.stub(UserModel, 'findByPk').resolves(userMock);
+    sinon.stub(ProductModel, 'create').resolves(productMock);
+    //act
+    const serviceResponse = await ProductService.create(newProduct);
+
+    //assert
+    expect(serviceResponse.status).to.be.eq(CREATED);
+    expect(serviceResponse.data).to.deep.equal(productMock.dataValues);
+  });
 
   it('Test the update function in case of a invalid id', async function() {
     //arrange
@@ -28,7 +60,7 @@ describe('ProductsService', function () {
     expect(serviceResponse.data).to.deep.equal({message: 'Product not found'});
   });
 
-  it.only('Test the update function in case of success', async function() {
+  it('Test the update function in case of success', async function() {
     //arrange
     const productMock = ProductModel.build(validProductFromModel);
     const updatedMock = ProductModel.build(updatedProduct);
