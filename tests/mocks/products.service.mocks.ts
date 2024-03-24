@@ -34,3 +34,20 @@ export const newProduct = {
   price: '80 peças de prata',
   userId: 1,
 };
+
+export const newProductFromService = {
+  id: 6,
+  name: 'bandeija de bronze',
+  price: '80 peças de prata',
+  userId: 1,
+};
+
+export const successfulServiceResponse = {
+  status: 'CREATED', 
+  data: newProductFromService
+}
+
+export const notFoundServiceResponse = {
+  status: 'NOT_FOUND', 
+  data: { message: 'User not found' }
+}
