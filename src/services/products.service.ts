@@ -3,10 +3,12 @@ import UserModel from '../database/models/user.model';
 import { Product, ProductToUpdate } from '../types/Product';
 import { ServiceResponse } from '../types/ServiceResponse';
 
-const getAll = async (): Promise<ServiceResponse> => {
+const getAll = async (): Promise<ServiceResponse<Product[]>> => {
   const allProducts = await ProductModel.findAll();
 
-  return { status: 'SUCCESS', data: allProducts };
+  const productsData: Product[] = allProducts.map((product) => product.get({ plain: true }));
+
+  return { status: 'SUCCESS', data: productsData };
 };
 
 const create = async ({ 
@@ -33,6 +35,7 @@ const update = async ({ name, price }: ProductToUpdate): Promise<ServiceResponse
 };
 
 export default {
+  getAll,
   update,
   create,
 };
