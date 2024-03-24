@@ -1,6 +1,6 @@
 import express from 'express';
 import ProductsController from '../controllers/products.controller';
-import verifyCreateProductFields from '../middlewares/verifyCreateProductFields';
+import verifyCreateProductFields from '../middlewares/verifyCreateProductFields.middleware';
 
 const router = express.Router();
 
