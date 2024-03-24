@@ -2,18 +2,11 @@ import ProductModel, { ProductInputtableTypes } from '../database/models/product
 import UserModel from '../database/models/user.model';
 import { ProductToUpdate } from '../types/Product';
 import { ServiceResponse } from '../types/ServiceResponse';
-import validations from './utils/validations';
 
 const create = async ({ 
   name, 
   price, 
   userId }: ProductInputtableTypes): Promise<ServiceResponse> => {
-  const error = validations.validateParams({ name, price, userId });
-  if (error) {
-    return { 
-      status: 'UNPROCESSABLE', data: { message: error } };
-  }
-
   const foundUser = await UserModel.findByPk(userId);
   if (!foundUser) return { status: 'NOT_FOUND', data: { message: 'User not found' } };
 
