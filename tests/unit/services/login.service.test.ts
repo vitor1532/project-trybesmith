@@ -38,7 +38,7 @@ describe('LoginService', function () {
     expect(serviceResponse.data).to.deep.equal(failedLoginResponse);
   });
 
-  it.only('Test the login function in case of invalid password', async function() {
+  it('Test the login function in case of invalid password', async function() {
     //arrange
     sinon.stub(UserModel, 'findOne').resolves(null);
     const loginFields = invalidPassword;
