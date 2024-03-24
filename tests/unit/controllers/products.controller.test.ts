@@ -11,7 +11,7 @@ import {
   newProductFromService,
   validProduct,
   updatedProduct
-} from '../../mocks/products.service.mocks';
+} from '../../mocks/products.mocks';
 import ProductsService from '../../../src/services/products.service';
 import ProductsController from '../../../src/controllers/products.controller';
 import UserModel from '../../../src/database/models/user.model';

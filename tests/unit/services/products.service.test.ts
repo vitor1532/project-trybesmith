@@ -9,7 +9,7 @@ import {
   validProductFromModel,
   invalidUserIdProduct,
   newProduct,
-} from '../../mocks/products.service.mocks';
+} from '../../mocks/products.mocks';
 import UserModel from '../../../src/database/models/user.model';
 import { validUserFromModel } from '../../mocks/user.service.mocks';
 
