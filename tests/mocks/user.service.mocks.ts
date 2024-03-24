@@ -16,6 +16,11 @@ export const secondValidUserFromModel = {
   password: '$3cr3t'
 }
 
+export const validUsersFromModel = [
+  validUserFromModel,
+  secondValidUserFromModel
+];
+
 export const validUserFromService = {
   username: 'Hagar',
   productIds: [1, 2]

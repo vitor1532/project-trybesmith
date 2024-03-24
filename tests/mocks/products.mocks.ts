@@ -1,7 +1,3 @@
-import { Model } from "sequelize";
-import { ProductInputtableTypes } from "../../src/database/models/product.model";
-import { Product } from "../../src/types/Product";
-
 export const invalidProduct = {
   id: 999,
   name: 'bandeija de bronze',
@@ -26,6 +22,11 @@ export const secondvalidProductFromModel = {
   price: '80 peças de prata',
   userId: 2
 };
+
+export const validProductsFromModel = [
+  validProductFromModel,
+  secondvalidProductFromModel
+];
 
 export const updatedProduct = {
   id: 1,

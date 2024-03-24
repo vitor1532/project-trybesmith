@@ -14,7 +14,7 @@ chai.use(chaiHttp);
 
 describe('GET /users', function () { 
   beforeEach(function () { sinon.restore(); });
-  it.only('Tests GET /products in case of success', async function () {
+  it('Tests GET /products in case of success', async function () {
     // arrange
     const usersMock = [
       UserModel.build(validUserFromModel),
