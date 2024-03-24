@@ -83,7 +83,7 @@ describe('ProductsController', function () {
     expect(res.json).to.have.been.calledWith({message: 'Product not found'});
   });
 
-  it.only('Tests getAll function in case of success', async function () {
+  it('Tests getAll function in case of success', async function () {
     // arrange
     sinon.stub(ProductsService, 'getAll').resolves(getAllSuccessfulServiceResponse);
     // assert
