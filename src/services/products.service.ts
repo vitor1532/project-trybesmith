@@ -4,7 +4,7 @@ import { ServiceResponse } from '../types/ServiceResponse';
 import validations from './utils/validations';
 
 const update = async ({ id, name, price, userId }: Product): Promise<ServiceResponse> => {
-  const productFound = await ProductModel.findByPk(id);
+  const productFound = await ProductModel.findOne({ where: { name } });
   if (!productFound) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
 
   if (productFound.dataValues.userId !== userId) await validations.isUserValid(userId);
