@@ -21,7 +21,7 @@ describe('LoginController', function () {
     sinon.restore();
   });
 
-  it.only('Tests login function in case of success', async function () {
+  it('Tests login function in case of success', async function () {
     // arrange
     req.body = validLoginFields;
     const userMock = UserModel.build(validUserFromModel);
