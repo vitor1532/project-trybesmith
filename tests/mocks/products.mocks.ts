@@ -67,3 +67,13 @@ export const successfulServiceResponse = {
   status: 'SUCCESS', 
   data: updatedProduct
 };
+
+export const productsFromServiceArray = [
+  validProductFromModel,
+  secondvalidProductFromModel
+];
+
+export const getAllSuccessfulServiceResponse = {
+  status: 'SUCCESS',
+  data: productsFromServiceArray,
+}

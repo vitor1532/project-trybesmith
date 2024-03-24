@@ -80,7 +80,7 @@ describe('ProductsService', function () {
     expect(serviceResponse.data).to.deep.equal(updatedProduct);
   });
 
-  it.only('Test the getAll function in case of success', async function() {
+  it('Test the getAll function in case of success', async function() {
     //arrange
     const productsMock = [
       ProductModel.build(validProductFromModel),

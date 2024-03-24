@@ -10,7 +10,9 @@ import {
   newProduct,
   newProductFromService,
   validProduct,
-  updatedProduct
+  updatedProduct,
+  getAllSuccessfulServiceResponse,
+  productsFromServiceArray
 } from '../../mocks/products.mocks';
 import ProductsService from '../../../src/services/products.service';
 import ProductsController from '../../../src/controllers/products.controller';
@@ -79,6 +81,17 @@ describe('ProductsController', function () {
     // act
     expect(res.status).to.have.been.calledWith(404);
     expect(res.json).to.have.been.calledWith({message: 'Product not found'});
+  });
+
+  it.only('Tests getAll function in case of success', async function () {
+    // arrange
+    sinon.stub(ProductsService, 'getAll').resolves(getAllSuccessfulServiceResponse);
+    // assert
+    await ProductsController.getAll(req, res);
+
+    // act
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(productsFromServiceArray);
   });
 
 });
