@@ -8,8 +8,6 @@ const getAll = async (_req: Request, res: Response): Promise<Response> => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
-// TODO: VERIFY REQ.BODY 
-
 const create = async (req: Request, res: Response): Promise<Response> => {
   const { status, data } = await ProductsService.create(req.body);
 
