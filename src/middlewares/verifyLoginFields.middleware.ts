@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 
 const verifyLoginFields = (req: Request, res: Response, next: NextFunction) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { username, password } = req.body;
+  if (!username || !password) {
     return res.status(400).json({ message: '"username" and "password" are required' });
   }
   next();
