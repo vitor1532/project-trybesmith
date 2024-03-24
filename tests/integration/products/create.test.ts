@@ -43,7 +43,7 @@ describe('POST /products', function () {
       .send(httpRequestBody);
   
     //assert
-    expect(httpResponse.status).to.equal(404);
-    expect(httpResponse.body).to.deep.equal({message: 'User not found'});
+    expect(httpResponse.status).to.equal(422);
+    expect(httpResponse.body).to.deep.equal({message: '"userId" not found'});
   });
 });

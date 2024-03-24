@@ -20,6 +20,7 @@ describe('ProductsService', function () {
   const NOT_FOUND = 'NOT_FOUND';
   const SUCCESS = 'SUCCESS';
   const CREATED = 'CREATED';
+  const UNPROCESSABLE = 'UNPROCESSABLE';
 
   it('Test the create function in case of a invalid userId', async function() {
     //arrange
@@ -30,8 +31,8 @@ describe('ProductsService', function () {
     const serviceResponse = await ProductService.create(invalidUserIdProduct);
 
     //assert
-    expect(serviceResponse.status).to.be.eq(NOT_FOUND);
-    expect(serviceResponse.data).to.deep.equal({message: 'User not found'});
+    expect(serviceResponse.status).to.be.eq(UNPROCESSABLE);
+    expect(serviceResponse.data).to.deep.equal({message: '"userId" not found'});
   });
 
   it('Test the create function in case of success', async function() {
