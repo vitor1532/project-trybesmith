@@ -31,7 +31,7 @@ describe('POST /products', function () {
     expect(httpResponse.body.userId).to.equal(newProduct.userId);
   });
 
-  it.only('Tests POST /products in case of invalid userId', async function () {
+  it('Tests POST /products in case of invalid userId', async function () {
     // arrange
     const httpRequestBody = invalidUserIdProduct;
 
