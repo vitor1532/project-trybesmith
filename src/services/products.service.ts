@@ -1,15 +1,12 @@
 import ProductModel from '../database/models/product.model';
-import { Product } from '../types/Product';
+import { ProductToUpdate } from '../types/Product';
 import { ServiceResponse } from '../types/ServiceResponse';
-import validations from './utils/validations';
 
-const update = async ({ id, name, price, userId }: Product): Promise<ServiceResponse> => {
+const update = async ({ name, price }: ProductToUpdate): Promise<ServiceResponse> => {
   const productFound = await ProductModel.findOne({ where: { name } });
   if (!productFound) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
 
-  if (productFound.dataValues.userId !== userId) await validations.isUserValid(userId);
-
-  await ProductModel.update({ name, price, userId }, { where: { id } });
+  await ProductModel.update({ name, price }, { where: { id: productFound.dataValues.id } });
 
   await productFound.reload();
 

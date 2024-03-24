@@ -4,3 +4,8 @@ export type Product = {
   price: string;
   userId: number;
 };
+
+export type ProductToUpdate = {
+  name: string;
+  price: string;
+};
