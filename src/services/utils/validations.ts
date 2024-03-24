@@ -1,12 +1,17 @@
-import UserModel from '../../database/models/user.model';
-import { ServiceResponse } from '../../types/ServiceResponse';
+import { ProductInputtableTypes } from '../../database/models/product.model';
 
-const isUserValid = async (userId: number): Promise<ServiceResponse | undefined> => {
-  const userFound = await UserModel.findByPk(userId);
-
-  if (!userFound) return { status: 'NOT_FOUND', data: { message: 'User not found!' } };
+const validateParams = ({
+  name,
+  price,
+  userId,
+}: ProductInputtableTypes): string | null => {
+  if (!name) return 'Name is required';
+  if (!price) return 'Price is required';
+  if (!userId) return 'userId is required';
+  
+  return null;
 };
 
 export default {
-  isUserValid,
+  validateParams,
 };
