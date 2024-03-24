@@ -1,11 +1,12 @@
 import express from 'express';
 import ProductsController from '../controllers/products.controller';
+import verifyCreateProductFields from '../middlewares/verifyCreateProductFields';
 
 const router = express.Router();
 
 router.get('/', ProductsController.getAll);
 
-router.post('/', ProductsController.create);
+router.post('/', verifyCreateProductFields, ProductsController.create);
 
 router.put('/', ProductsController.update);
 

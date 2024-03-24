@@ -16,7 +16,7 @@ const create = async ({
   price, 
   userId }: ProductInputtableTypes): Promise<ServiceResponse<Product>> => {
   const foundUser = await UserModel.findByPk(userId);
-  if (!foundUser) return { status: 'NOT_FOUND', data: { message: 'User not found' } };
+  if (!foundUser) return { status: 'UNPROCESSABLE', data: { message: '"userId" not found' } };
 
   const newProduct = await ProductModel.create({ name, price, userId });
 
