@@ -42,12 +42,17 @@ export const newProductFromService = {
   userId: 1,
 };
 
-export const successfulServiceResponse = {
+export const createdServiceResponse = {
   status: 'CREATED', 
   data: newProductFromService
-}
+};
 
-export const notFoundServiceResponse = {
+export const productNotFoundServiceResponse = {
   status: 'NOT_FOUND', 
-  data: { message: 'User not found' }
-}
+  data: { message: 'Product not found' }
+};
+
+export const successfulServiceResponse = {
+  status: 'SUCCESS', 
+  data: updatedProduct
+};

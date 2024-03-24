@@ -5,3 +5,8 @@ export const validUserFromModel = {
   level: 10,
   password: '$3cr3t'
 }
+
+export const userNotFoundServiceResponse = {
+  status: 'NOT_FOUND', 
+  data: { message: 'User not found' }
+};
