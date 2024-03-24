@@ -1,5 +1,5 @@
-export type HTTPResponses = 'SUCCESS'
-| 'CREATED' | 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'UNPROCESSABLE';
+export type HTTPResponses = 
+  'SUCCESS' | 'CREATED' | 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'UNPROCESSABLE' | string;
 
 export type ServiceResponseError = {
   message: string

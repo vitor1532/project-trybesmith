@@ -44,7 +44,7 @@ describe('ProductsController', function () {
     expect(res.json).to.have.been.calledWith(newProductFromService);
   });
 
-  it.only('Tests create function in case of invalid userID', async function () {
+  it('Tests create function in case of invalid userID', async function () {
     // arrange
     req.body = invalidUserIdProduct;
     sinon.stub(UserModel, 'findByPk').resolves(null);

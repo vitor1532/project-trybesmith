@@ -9,6 +9,7 @@ import {
   validProductFromModel,
   invalidUserIdProduct,
   newProduct,
+  secondvalidProductFromModel,
 } from '../../mocks/products.mocks';
 import UserModel from '../../../src/database/models/user.model';
 import { validUserFromModel } from '../../mocks/user.service.mocks';
@@ -77,5 +78,23 @@ describe('ProductsService', function () {
     //assert
     expect(serviceResponse.status).to.be.eq(SUCCESS);
     expect(serviceResponse.data).to.deep.equal(updatedProduct);
+  });
+
+  it.only('Test the getAll function in case of success', async function() {
+    //arrange
+    const productsMock = [
+      ProductModel.build(validProductFromModel),
+      ProductModel.build(secondvalidProductFromModel)
+    ]
+    sinon.stub(ProductModel, 'findAll').resolves(productsMock);
+
+    //act
+    const serviceResponse = await ProductService.getAll();
+
+    Promise.all([serviceResponse]);
+
+    //assert
+    expect(serviceResponse.status).to.be.eq(SUCCESS);
+    expect(serviceResponse.data).to.deep.equal([validProductFromModel, secondvalidProductFromModel]);
   });
 });
