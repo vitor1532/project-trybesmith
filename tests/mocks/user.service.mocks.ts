@@ -1,11 +1,14 @@
 import { User } from "../../src/types/User";
+import bcrypt from 'bcryptjs';
+
+const SALT_ROUNDS = process.env.BCRYPT_SALT_ROUNDS || 10;
 
 export const validUserFromModel = {
   id: 1,
   username: 'Hagar',
   vocation: 'Guerreiro',
   level: 10,
-  password: '$3cr3t'
+  password: bcrypt.hashSync('$3cr3t', SALT_ROUNDS)
 }
 
 export const secondValidUserFromModel = {
@@ -13,7 +16,7 @@ export const secondValidUserFromModel = {
   username: 'Thor',
   vocation: 'Guerreiro',
   level: 99,
-  password: '$3cr3t'
+  password: bcrypt.hashSync('$3cr3t', SALT_ROUNDS)
 }
 
 export const validUsersFromModel = [
