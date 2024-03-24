@@ -18,7 +18,7 @@ describe('UsersController', function () {
     sinon.restore();
   });
   
-  it.only('Tests getAll function in case of success', async function () {
+  it('Tests getAll function in case of success', async function () {
     // arrange
     sinon.stub(UsersService, 'getAll').resolves(getAllUsersSuccessfulResponse);
     // assert
