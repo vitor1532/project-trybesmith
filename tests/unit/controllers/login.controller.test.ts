@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import UserModel from '../../../src/database/models/user.model';
 import { validUserFromModel } from '../../mocks/user.service.mocks';
 import LoginController from '../../../src/controllers/login.controller';
@@ -14,6 +14,7 @@ chai.use(sinonChai);
 describe('LoginController', function () {
   const req = {} as Request;
   const res = {} as Response;
+  const next = {} as NextFunction;
 
   beforeEach(function () {
     res.status = sinon.stub().returns(res);
@@ -28,7 +29,7 @@ describe('LoginController', function () {
     sinon.stub(UserModel, 'findOne').resolves(userMock);
     sinon.stub(jwtUtil, 'create').returns('123');
     // assert
-    await LoginController.login(req, res);
+    await LoginController.login(req, res, next);
 
     // act
     expect(res.status).to.have.been.calledWith(200);

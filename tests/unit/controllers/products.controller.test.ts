@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { 
   createdServiceResponse,
   successfulServiceResponse,
@@ -25,6 +25,7 @@ chai.use(sinonChai);
 describe('ProductsController', function () {
   const req = {} as Request;
   const res = {} as Response;
+  const next = {} as NextFunction;
 
   beforeEach(function () {
     res.status = sinon.stub().returns(res);
@@ -39,7 +40,7 @@ describe('ProductsController', function () {
     sinon.stub(UserModel, 'findByPk').resolves(userMock);
     sinon.stub(ProductsService, 'create').resolves(createdServiceResponse);
     // assert
-    await ProductsController.create(req, res);
+    await ProductsController.create(req, res, next);
 
     // act
     expect(res.status).to.have.been.calledWith(201);
@@ -52,7 +53,7 @@ describe('ProductsController', function () {
     sinon.stub(UserModel, 'findByPk').resolves(null);
     sinon.stub(ProductsService, 'create').resolves(userNotFoundServiceResponse);
     // assert
-    await ProductsController.create(req, res);
+    await ProductsController.create(req, res, next);
 
     // act
     expect(res.status).to.have.been.calledWith(404);
@@ -64,7 +65,7 @@ describe('ProductsController', function () {
     req.body = validProduct;
     sinon.stub(ProductsService, 'update').resolves(successfulServiceResponse);
     // assert
-    await ProductsController.update(req, res);
+    await ProductsController.update(req, res, next);
 
     // act
     expect(res.status).to.have.been.calledWith(200);
@@ -76,7 +77,7 @@ describe('ProductsController', function () {
     req.body = validProduct;
     sinon.stub(ProductsService, 'update').resolves(productNotFoundServiceResponse);
     // assert
-    await ProductsController.update(req, res);
+    await ProductsController.update(req, res, next);
 
     // act
     expect(res.status).to.have.been.calledWith(404);
@@ -87,7 +88,7 @@ describe('ProductsController', function () {
     // arrange
     sinon.stub(ProductsService, 'getAll').resolves(getAllSuccessfulServiceResponse);
     // assert
-    await ProductsController.getAll(req, res);
+    await ProductsController.getAll(req, res, next);
 
     // act
     expect(res.status).to.have.been.calledWith(200);
