@@ -1,8 +1,8 @@
+import { ProductToUpdate, CreateProduyctBody } from '../../types/Product';
 import { ServiceResponse } from '../../types/ServiceResponse';
 import createProductInvalidDataSchema from './schemas/invalidDataSchema';
 import createProductUnprocessableSchema from './schemas/unprocessableSchema';
-
-type CreateProduyctBody = { name: string, price: string, userId: number };
+import updateFieldsSchema from './schemas/updateFieldsSchema';
 
 export const validateCreateInvalidDataProductFields = (
   body: CreateProduyctBody,
@@ -24,4 +24,18 @@ export const validateCreateUnprocessableProductFields = (
   }
 };
 
-export default { validateCreateUnprocessableProductFields, validateCreateInvalidDataProductFields };
+export const validateUpdateFields = (
+  body: ProductToUpdate,
+): ServiceResponse<string> | undefined => {
+  const { error } = updateFieldsSchema.validate(body);
+
+  if (error) {
+    return { status: 'INVALID_DATA', data: { message: error.details[0].message } };
+  }
+};
+
+export default { 
+  validateCreateUnprocessableProductFields,
+  validateCreateInvalidDataProductFields,
+  validateUpdateFields,
+};

@@ -9,3 +9,9 @@ export type ProductToUpdate = {
   name: string;
   price: string;
 };
+
+export type CreateProduyctBody = { 
+  name: string,
+  price: string,
+  userId: number
+};

@@ -14,8 +14,6 @@ const create = async (req: Request, res: Response): Promise<Response> => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
-// TODO: VERIFY REQ.BODY (see 'extraindo contrato a partir dos types')
-
 const update = async (req: Request, res: Response): Promise<Response> => {
   const { status, data } = await ProductsService.update(req.body);
 
