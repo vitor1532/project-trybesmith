@@ -28,5 +28,6 @@ describe('GET /products', function () {
   
     //assert
     expect(httpResponse.status).to.equal(200);
+    expect(httpResponse.body).to.deep.equal(productsMock.map(product => product.toJSON()));
   });
 });
