@@ -1,5 +1,5 @@
 import chai, { expect } from 'chai';
-import sinon from 'sinon';
+import sinon, { SinonStub } from 'sinon';
 import sinonChai from 'sinon-chai';
 import { NextFunction, Request, Response } from 'express';
 import UsersService from '../../../src/services/users.service';
@@ -28,5 +28,21 @@ describe('UsersController', function () {
     // act
     expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(usersFromService);
+  });
+
+  it('Tests getAll function in case of server error', async function () {
+    // arrange
+    const nextStub: SinonStub = sinon.stub();
+    const error = new Error('Server error');
+    // const userMock = UserModel.build(validUserFromModel);
+    sinon.stub(UsersService, 'getAll').rejects(error);
+    
+    // act
+    await UsersController.getAll(req, res, nextStub);
+    const errorMessage = nextStub.firstCall.args[0];
+    // assert
+    expect(nextStub).to.have.been.calledOnce;
+    expect(nextStub).to.have.been.calledWith(error);
+    expect(errorMessage).to.be.equal(error);
   });
 });

@@ -1,4 +1,4 @@
-import { expect, use } from 'chai';
+import { expect } from 'chai';
 import sinon from 'sinon';
 import ProductModel from '../../../src/database/models/product.model';
 import ProductService from '../../../src/services/products.service';
